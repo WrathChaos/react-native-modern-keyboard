@@ -1,5 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
-const { width: ScreenWidth } = Dimensions.get('screen');
+import { StyleSheet, Dimensions } from "react-native";
+const { width: ScreenWidth } = Dimensions.get("screen");
 
 export default StyleSheet.create({
   container: {},
