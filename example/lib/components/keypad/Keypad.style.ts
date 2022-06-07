@@ -8,9 +8,9 @@ export const _textStyle = (isPressed: boolean): TextStyle => ({
 
 export default StyleSheet.create({
   container: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
+    width: 110,
+    height: 110,
+    borderRadius: 110,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -20,8 +20,8 @@ export default StyleSheet.create({
     borderRadius: 75,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowRadius: 5,
-    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    shadowOpacity: 0.15,
     shadowColor: "#757575",
     shadowOffset: {
       width: 0,
