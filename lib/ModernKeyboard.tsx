@@ -5,10 +5,11 @@ import { View, StyleProp, ViewStyle } from "react-native";
  */
 import styles from "./ModernKeyboard.style";
 import Keypad, { KeypadProps } from "./components/keypad/Keypad";
+import { useCallback } from "react";
 
 type CustomStyleProp = StyleProp<ViewStyle> | Array<StyleProp<ViewStyle>>;
 
-const DELETE_KEYPAD = "delete";
+export const BACKSPACE_KEYPAD = "backspace";
 const DECIMAL = ".";
 
 export interface ModernKeyboardProps extends KeypadProps {
@@ -23,17 +24,20 @@ const ModernKeyboard: React.FC<ModernKeyboardProps> = ({
 }) => {
   let input = "";
 
-  const handlePress = (keypad: number | string) => {
-    if (keypad === DELETE_KEYPAD) {
-      input = input.slice(0, -1);
-    } else if (keypad === DECIMAL && input.includes(DECIMAL)) {
-      return;
-    } else {
-      input += keypad;
-    }
+  const handlePress = useCallback(
+    (keypad: number | string) => {
+      if (keypad === BACKSPACE_KEYPAD) {
+        input = input.slice(0, -1);
+      } else if (keypad === DECIMAL && input.includes(DECIMAL)) {
+        return;
+      } else {
+        input += keypad;
+      }
 
-    onInputChange && onInputChange(input);
-  };
+      onInputChange && onInputChange(input);
+    },
+    [input],
+  );
 
   return (
     <View style={[styles.container, style]}>
@@ -55,7 +59,11 @@ const ModernKeyboard: React.FC<ModernKeyboardProps> = ({
       <View style={styles.row}>
         <Keypad {...rest} text={DECIMAL} onPress={() => handlePress(DECIMAL)} />
         <Keypad {...rest} text="0" onPress={() => handlePress(0)} />
-        <Keypad {...rest} text="<" onPress={() => handlePress(DELETE_KEYPAD)} />
+        <Keypad
+          {...rest}
+          text={BACKSPACE_KEYPAD}
+          onPress={() => handlePress(BACKSPACE_KEYPAD)}
+        />
       </View>
     </View>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Text,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -10,14 +11,15 @@ import ModernKeyboard from "./build/dist/ModernKeyboard";
 const App = () => {
   const isDarkMode = useColorScheme() === "dark";
 
+  const [input, setInput] = useState<string>();
+
   return (
-    <SafeAreaView
-      style={{ flex: 1, alignItems: "center", justifyContent: "flex-end" }}
-    >
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+      <Text style={styles.textStyle}>{input}</Text>
       <ModernKeyboard
         onInputChange={(value: string) => {
-          console.log(value);
+          setInput(value);
         }}
       />
     </SafeAreaView>
@@ -25,21 +27,19 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-  },
-  highlight: {
-    fontWeight: "700",
+  textStyle: {
+    right: 48,
+    bottom: 32,
+    fontSize: 48,
+    width: "100%",
+    fontWeight: "bold",
+    textAlign: "right",
+    justifyContent: "flex-end",
   },
 });
 

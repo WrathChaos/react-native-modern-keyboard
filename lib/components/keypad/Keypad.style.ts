@@ -1,20 +1,33 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 
-export const _outerStyle = (isPressed: boolean, size: number): ViewStyle => ({
+export const _outerStyle = (
+  isPressed: boolean,
+  size: number,
+  outerBackgroundColor: string,
+  outerActiveBackgroundColor: string,
+): ViewStyle => ({
   width: size * 1.5,
   height: size * 1.5,
   borderRadius: size * 1.5,
   alignItems: "center",
   justifyContent: "center",
-  backgroundColor: isPressed ? "rgba(0, 173, 255, 0.1)" : "transparent",
+  backgroundColor: isPressed
+    ? outerActiveBackgroundColor
+    : outerBackgroundColor,
 });
 
-export const _buttonStyle = (isPressed: boolean, size: number): ViewStyle => ({
+export const _buttonStyle = (
+  isPressed: boolean,
+  size: number,
+  buttonColor: string,
+  buttonActiveColor: string,
+): ViewStyle => ({
   width: size,
   height: size,
   borderRadius: size,
   alignItems: "center",
   justifyContent: "center",
+  backgroundColor: isPressed ? buttonActiveColor : buttonColor,
   shadowRadius: 8,
   shadowOpacity: 0.15,
   shadowColor: "#757575",
@@ -23,13 +36,27 @@ export const _buttonStyle = (isPressed: boolean, size: number): ViewStyle => ({
     height: 3,
   },
   elevation: 3,
-  backgroundColor: isPressed ? "#00ADFF" : "#fff",
 });
 
-export const _textStyle = (isPressed: boolean): TextStyle => ({
+export const _textStyle = (
+  isPressed: boolean,
+  textColor: string,
+  textActiveColor: string,
+): TextStyle => ({
   fontSize: 20,
   fontWeight: "bold",
-  color: isPressed ? "#fff" : "#000",
+  color: isPressed ? textActiveColor : textColor,
+});
+
+export const _backspaceStyle = (
+  isPressed: boolean,
+  textColor: string,
+  textActiveColor: string,
+): ImageStyle => ({
+  width: 35,
+  height: 25,
+  right: 1,
+  tintColor: isPressed ? textActiveColor : textColor,
 });
 
 export default StyleSheet.create({});
